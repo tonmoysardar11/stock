@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "./Card";
+import Details from "./Details";
 
 const Dashboard = () => {
   return (
@@ -11,10 +12,10 @@ const Dashboard = () => {
         <Card>Chart</Card>
       </div>
       <div className="grid col-span-6 row-span-1 md:col-span-2">
-        <Card>Details</Card>
+        <Card>Profile</Card>
       </div>
       <div className="grid col-span-6 row-span-1 md:col-span-2 md:row-span-4">
-        <Card>Profile</Card>
+        <Details/>
       </div>
     </div>
   );
