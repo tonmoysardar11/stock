@@ -14,7 +14,7 @@ const Dashboard = () => {
         <Card>Chart</Card>
       </div>
       <div className="grid col-span-6 row-span-1 md:col-span-2">
-        <Profile logo={companyProfile.logo} name={companyProfile.name} price={330} change={30} changepercentage={10}/>
+        <Profile logo={companyProfile.logo} name={companyProfile.name} price={330} change={-30} changepercentage={-10}/>
       </div>
       <div className="grid col-span-6 row-span-1 md:col-span-2 md:row-span-4">
         <Details item={companyProfile}/>

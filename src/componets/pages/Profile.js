@@ -10,7 +10,7 @@ const Profile = ({logo,name,price,change,changepercentage}) => {
             <p>{name}</p>
         </div>
         <div className='w-full flex justify-center items-center py-2'>
-           <p className='text-xl md:text-3xl mx-4'> ${price.toFixed(2)}</p> <p className={`text-md md:text-xl ${change>0? 'text-lime-500':'text-red-500'}`}>{change>0?`${change.toFixed(2)}`:`-${change.toFixed(2)}`}</p> <p className={`text-md md:text-xl ${change>0? 'text-lime-500':'text-red-500'}`}>({changepercentage.toFixed(2)}%) </p>
+           <p className='text-xl md:text-3xl mx-4'> ${price.toFixed(2)}</p> <p className={`text-md md:text-xl ${change>0? 'text-emerald-600':'text-red-500'}`}>{change.toFixed(2)}</p> <p className={`text-md md:text-xl ${change>0? 'text-emerald-600':'text-red-500'}`}>({changepercentage.toFixed(2)}%) </p>
         </div>
         </div>
 
