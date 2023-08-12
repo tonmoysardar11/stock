@@ -1,0 +1,21 @@
+import React from 'react'
+import Card from './Card'
+
+const Profile = ({logo,name,price,change,changepercentage}) => {
+  return (
+   <Card>
+    <div className='w-full flex justify-between items-center'>
+    <div className='w-full flex justify-start items-center'>
+            <img src={logo} width={40} height={40} alt="" />
+            <p>{name}</p>
+        </div>
+        <div className='w-full flex justify-center items-center py-2'>
+           <p className='text-xl md:text-3xl mx-4'> ${price.toFixed(2)}</p> <p className={`text-md md:text-xl ${change>0? 'text-lime-500':'text-red-500'}`}>{change>0?`${change.toFixed(2)}`:`-${change.toFixed(2)}`}</p> <p className={`text-md md:text-xl ${change>0? 'text-lime-500':'text-red-500'}`}>({changepercentage.toFixed(2)}%) </p>
+        </div>
+        </div>
+
+   </Card>
+  )
+}
+
+export default Profile
