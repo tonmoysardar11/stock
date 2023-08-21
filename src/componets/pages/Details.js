@@ -17,7 +17,7 @@ const Details = ({ item }) => {
       <div className="flex flex-col h-full">
         <div className="w-full flex justify-center items-center py-2">
           <img src={item.logo} width={40} height={40} alt="" />
-          <p>{item.name}</p>
+          <p className="mx-2">{item.name}</p>
         </div>
         <ul className="w-full h-full flex flex-col justify-between divider-y-1">
           {Object.keys(itemDetailsList)

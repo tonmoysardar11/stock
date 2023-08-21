@@ -28,7 +28,7 @@ const Charts = () => {
     <Card>
         <ul className="absolute top-5 right-5 flex flex-row items-center z-40">
             {Object.keys(config).map((element,index)=>{
-              return  <li key={index} onClick={()=>setfilter(element)}><button className={`p-2 m-1 text-sm rounded-md border-[2px] ${filter===element?'bg-indigo-500 text-white':'bg-gray-100 text-indigo-500'}`}>{element}</button> </li>
+              return  <li key={index} onClick={()=>setfilter(element)}><button className={`p-2 m-1 text-sm rounded-md ${filter===element?'bg-indigo-700 text-white':'bg-gray-100 text-indigo-700'}`}>{element}</button> </li>
             })}
 
 

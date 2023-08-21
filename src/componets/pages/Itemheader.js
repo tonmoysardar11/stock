@@ -5,7 +5,7 @@ const Itemheader = ({ item }) => {
     
       <div className="w-full px-3 flex justify-start items-center">
         <img src={item.logo} width={60} height={60} alt="" />
-        <p className="text-3xl font-semibold"> {item.name}</p>
+        <p className="text-3xl mx-2 font-semibold"> {item.name}</p>
       </div>
     
   );

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars,faSun,faMoon } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import logo from "../../media/logo-groww.svg";
 import Search from "./Search";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const Navbar = () => {
   const [menu, setmenu] = useState(false);
+  const {theme,settheme}=useContext(ThemeContext)
   const toggle = () => {
     setmenu(!menu);
   };
@@ -45,6 +47,8 @@ const Navbar = () => {
           />
         )}
 
+
+
         <div
           className={` ${
             menu ? `flex` : `hidden`
@@ -76,6 +80,11 @@ const Navbar = () => {
             </div>
           </nav>
         </div>
+        <FontAwesomeIcon
+            icon={!theme?faMoon:faSun}
+            onClick={()=>{settheme(!theme)}}
+            className=" mx-2 cursor-pointer text-xl text-gray-100 duration-200"
+          />
       </div>
     </header>
   );
