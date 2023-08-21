@@ -36,7 +36,7 @@ const Search = () => {
         )}
       </div>
       <div className="px-2 text-xl cursor-pointer hover:text-gray-100">
-        <FontAwesomeIcon icon={faMagnifyingGlass} onclick={find} />
+        <FontAwesomeIcon icon={faMagnifyingGlass} onClick={find} />
       </div>
     </div>
     {input && <SearchedItems find={input}/>}

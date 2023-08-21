@@ -17,9 +17,9 @@ const Navbar = () => {
 
   return (
     <header className="z-50 text-gray-400 bg-black shadow-2xl w-screen body-font fixed px-5 md:px-0">
-      <div className="w-full mx-auto flex flex-wrap px-1 md:px-0 justify-between items-center">
+      <div className="w-full mx-auto flex flex-wrap px-1 md:px-10 lg:px-20 justify-between items-center">
         <Link
-          className="mx-3 flex lg:mx-20 title-font font-medium items-center text-white md:mb-0"
+          className="flex title-font font-medium items-center text-white md:mb-0"
           to="/"
           onClick={() => setmenu(false)}
         >
@@ -48,15 +48,15 @@ const Navbar = () => {
         <div
           className={` ${
             menu ? `flex` : `hidden`
-          } flex-col lg:flex-row justify-between items-center lg:flex py-4 lg:py-0 w-full lg:w-1/3`}
+          } flex-col lg:flex-row justify-end items-center lg:flex py-4 lg:py-0 w-full lg:w-1/3`}
         >
-          <nav className="mx-auto lg:mr-14 flex flex-wrap items-center text-base justify-center">
+          <nav className=" flex flex-wrap items-center text-base justify-center">
             <div>
               <Link
                 className={
                   location === "league"
-                    ? "mx-5 text-white"
-                    : "mx-5 hover:text-red-500"
+                    ? "text-white"
+                    : "hover:text-red-500"
                 }
                 to="/league"
                 onClick={() => {
