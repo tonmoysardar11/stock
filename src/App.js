@@ -9,7 +9,6 @@ import { StockContext } from "./context/StockContext";
 function App() {
   const [theme, settheme] = useState(false);
   const [stock, setstock] = useState("FB");
-  console.log({key: process.env.REACT_APP_API_KEY})
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={{ theme, settheme }}>
