@@ -16,7 +16,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 const Charts = () => {
   const [data, setdata] = useState(candle);
   const [filter, setfilter] = useState("1D");
-  const {theme}=useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   const formatdata = (data) => {
     return data.c.map((element, index) => {
@@ -29,7 +29,9 @@ const Charts = () => {
   const CustomTooltip = ({ payload, label, active }) => {
     if (active) {
       return (
-        <div className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}>
+        <div
+          className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}
+        >
           <p className="text-sm">{` ${payload[0].value} | ${label} `}</p>
         </div>
       );
@@ -68,9 +70,15 @@ const Charts = () => {
             bottom: 5,
           }}
         >
-          <XAxis dataKey={"time"} stroke={!theme?'rgb(0 0 0)':'rgb(255 255 255)'} />
-          <YAxis domain={["dataMin", "dataMax"]} stroke={!theme?'rgb(0 0 0)':'rgb(255 255 255)'}/>
-          <Tooltip content={<CustomTooltip/>}/>
+          <XAxis
+            dataKey={"time"}
+            stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
+          />
+          <YAxis
+            domain={["dataMin", "dataMax"]}
+            stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
+          />
+          <Tooltip content={<CustomTooltip />} />
           <Line
             type="monotone"
             dataKey="value"

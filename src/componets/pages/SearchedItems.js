@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Details from "./Details";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
-const SearchedItems = ({ find, focus, sethover, setfocus }) => {
+const SearchedItems = ({ find }) => {
   const [data, setdata] = useState([]);
-  const [modalData, setmodalData] = useState({});
+  const { theme } = useContext(ThemeContext);
 
   const load = async () => {
     let fetchedData = await fetch("https://dummyjson.com/products");
@@ -16,14 +16,12 @@ const SearchedItems = ({ find, focus, sethover, setfocus }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const modal = (element) => {
-    setmodalData(element);
-  };
-
   return (
     <>
       <div
-        className="absolute top-14 left-5 md:left-[31vw] max-h-[85vh] overflow-y-auto z-30 mt-2 w-[80vw] md:w-[30vw] origin-top-right rounded-md bg-black shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none"
+        className={`absolute top-14 left-5 md:left-[25vw] max-h-[85vh] overflow-y-auto z-30 mt-2 w-[80vw] md:w-[30vw] origin-top-right rounded-md ${
+          !theme ? "bg-white text-black" : "bg-black text-white"
+        } shadow-2xl ring-1 ring-black ring-opacity-5`}
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
@@ -47,8 +45,8 @@ const SearchedItems = ({ find, focus, sethover, setfocus }) => {
                 return (
                   <div
                     key={element.id}
-                    className="text-gray-100 block px-4 py-2 text-sm cursor-pointer flex justify-between items-center hover:font-bold hover:text-lg"
-                    onClick={() => modal(element)}
+                    className="block px-4 py-2 text-sm cursor-pointer flex justify-between items-center hover:font-bold hover:text-lg"
+                    onClick={() => setdata("")}
                   >
                     <p>{element.title}</p>
                     <img src={element.thumbnail} className="w-10 h-10" alt="" />
@@ -62,9 +60,6 @@ const SearchedItems = ({ find, focus, sethover, setfocus }) => {
           )}
         </div>
       </div>
-      {/* {modalData && (
-        <Details item={modalData}/>
-      )} */}
     </>
   );
 };
