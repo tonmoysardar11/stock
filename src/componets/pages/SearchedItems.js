@@ -1,25 +1,36 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { stockSearch } from "../../api/stock-api";
 
 const SearchedItems = ({ find }) => {
   const [data, setdata] = useState([]);
   const { theme } = useContext(ThemeContext);
 
   const load = async () => {
-    let fetchedData = await fetch("https://dummyjson.com/products");
-    let json = await fetchedData.json();
-    setdata(data.concat(json.products));
+  //   const result= await stockSearch(find)
+  //     setdata(data.concat(result.result))
+  // //   }
+   try {
+    if(find){
+      const result= await stockSearch(find)
+      console.log(result)
+    }
+    
+   } catch (error) {
+    setdata([])
+    console.log(error)
+   }
   };
 
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [find]);
 
   return (
     <>
       <div
-        className={`absolute top-14 left-5 md:left-[25vw] max-h-[85vh] overflow-y-auto z-30 mt-2 w-[80vw] md:w-[30vw] origin-top-right rounded-md ${
+        className={`absolute top-14 left-5 md:left-[28vw] max-h-[85vh] overflow-y-auto z-30 mt-2 w-[80vw] md:w-[26vw] origin-top-right rounded-md ${
           !theme ? "bg-white text-black" : "bg-black text-white"
         } shadow-2xl ring-1 ring-black ring-opacity-5`}
         role="menu"
@@ -29,14 +40,14 @@ const SearchedItems = ({ find }) => {
       >
         <div className="p-2" role="none">
           {data.filter((element) =>
-            element.title
+            element.description
               .toString()
               .toLowerCase()
               .includes(find.toString().toLowerCase())
           ).length > 0 ? (
             data
               .filter((element) =>
-                element.title
+                element.description
                   .toString()
                   .toLowerCase()
                   .includes(find.toString().toLowerCase())
@@ -48,8 +59,9 @@ const SearchedItems = ({ find }) => {
                     className="block px-4 py-2 text-sm cursor-pointer flex justify-between items-center hover:font-bold hover:text-lg"
                     onClick={() => setdata("")}
                   >
-                    <p>{element.title}</p>
-                    <img src={element.thumbnail} className="w-10 h-10" alt="" />
+                    <p>{element.description}</p>
+                    <p>{element.displaySymbol}</p>
+                   
                   </div>
                 );
               })

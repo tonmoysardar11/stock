@@ -14,7 +14,6 @@ const Search = () => {
     setinput("");
     setmatch("");
   };
-  const find = () => {};
   return (
     <>
       <div className="w-2/3 md:w-1/3 flex justify-center items-center">
@@ -32,9 +31,6 @@ const Search = () => {
               <FontAwesomeIcon icon={faX} onClick={clear} />
             </div>
           )}
-        </div>
-        <div className="px-2 text-xl cursor-pointer hover:text-gray-100">
-          <FontAwesomeIcon icon={faMagnifyingGlass} onClick={find} />
         </div>
       </div>
       {input && <SearchedItems find={input} />}
