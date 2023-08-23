@@ -15,7 +15,6 @@ const SearchedItems = ({ find,clear }) => {
     if(find){
       const result= await stockSearch(find)
       const exactResult= result.result.filter((element)=>!element.symbol.includes('.'))
-      console.log(exactResult)
       setdata(exactResult)
     }
     
@@ -50,7 +49,7 @@ const SearchedItems = ({ find,clear }) => {
                   <div
                     key={index}
                     className="block px-4 py-2 text-sm cursor-pointer flex justify-between items-center hover:font-semibold"
-                    onClick={()=>{setstock(element.symbol);console.log(element)}}
+                    onClick={()=>{setstock(element.symbol);clear()}}
                   >
                     <p>{element.description}</p>
                     <p>{element.symbol}</p>

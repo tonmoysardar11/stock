@@ -41,7 +41,6 @@ const Charts = () => {
           endTimeStamp
         );
         setdata(formatdata(result));
-        console.log(result);
       }
     } catch (error) {
       setdata({});
@@ -67,7 +66,7 @@ const Charts = () => {
         <div
           className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}
         >
-          <p className="text-sm">{` ${payload[0].value} | ${label} `}</p>
+          <p className="text-sm">{` $${payload[0].value}`} <b>|</b> {`${label} `}</p>
         </div>
       );
     }
@@ -106,11 +105,11 @@ const Charts = () => {
           }}
         >
           <XAxis
-            dataKey={"time"}
+            dataKey={"time"} 
             stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
           />
           <YAxis
-            domain={["dataMin", "dataMax"]}
+            domain={['dataMin-1', 'dataMax+1']}
             stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
           />
           <Tooltip content={<CustomTooltip/>}/>
