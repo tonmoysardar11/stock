@@ -36,7 +36,7 @@ export const stockProfile = async (input) => {
 
   export const stockChart = async (symbol,resolution,from,to) => {
     const fetchedData = await fetch(
-      `${baseURL}stock/candle?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&token=${process.env.REACT_APP_API_KEY}`
+      `${baseURL}/stock/candle?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&token=${process.env.REACT_APP_API_KEY}`
     );
     if (!fetchedData.ok) {
       const message = `Oops!! Something Wrong - ${fetchedData.status}:${fetchedData.statusText}`;

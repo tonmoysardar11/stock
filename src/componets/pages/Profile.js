@@ -12,11 +12,11 @@ const Profile = ({ logo, name, value, change, changepercentage }) => {
         <div className="w-full flex justify-center items-center py-2">
           <p className="text-xl md:text-3xl mx-4"> ${value?.toFixed(2)}</p>
           <p
-            className={`text-md md:text-xl ${
+            className={`text-md md:text-xl flex ${
               change > 0 ? "text-emerald-600" : "text-red-500"
             }`}
           >
-            {change?.toFixed(2)}
+           {change?.toFixed(2)}
           </p>
           <p
             className={`text-md md:text-xl ${

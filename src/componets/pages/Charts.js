@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import { candle } from "../../const";
 import { Unixtodate, createDate, datetoUnix } from "../helpers/data-helpers";
 import {
   LineChart,
@@ -62,19 +61,19 @@ const Charts = () => {
       };
     });
   };
-  // const CustomTooltip = ({ payload, label, active }) => {
-  //   if (active) {
-  //     return (
-  //       <div
-  //         className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}
-  //       >
-  //         <p className="text-sm">{` ${payload[0].value} | ${label} `}</p>
-  //       </div>
-  //     );
-  //   }
+  const CustomTooltip = ({ payload, label, active }) => {
+    if (active) {
+      return (
+        <div
+          className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}
+        >
+          <p className="text-sm">{` ${payload[0].value} | ${label} `}</p>
+        </div>
+      );
+    }
 
-  //   return null;
-  // };
+    return null;
+  };
   return (
     <Card>
       <ul className="absolute top-5 right-5 flex flex-row items-center z-40">
@@ -114,13 +113,14 @@ const Charts = () => {
             domain={["dataMin", "dataMax"]}
             stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
           />
-          <Tooltip />
-          {/* custom tooltip to be fixed */}
+          <Tooltip content={<CustomTooltip/>}/>
+          
           <Line
             type="monotone"
             dataKey="value"
             stroke="rgb(22 163 74)"
             strokeWidth={2}
+            dot={false}
           />
         </LineChart>
       </ResponsiveContainer>
