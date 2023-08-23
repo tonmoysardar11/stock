@@ -8,7 +8,7 @@ import { StockContext } from "./context/StockContext";
 
 function App() {
   const [theme, settheme] = useState(false);
-  const [stock, setstock] = useState("FB");
+  const [stock, setstock] = useState("META");
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={{ theme, settheme }}>

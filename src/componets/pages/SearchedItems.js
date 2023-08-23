@@ -14,7 +14,6 @@ const SearchedItems = ({ find }) => {
    try {
     if(find){
       const result= await stockSearch(find)
-      console.log(result.result)
       setdata(result.result)
     }
     
