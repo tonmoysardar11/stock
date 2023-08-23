@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { candle } from "../../const";
-import { Unixtodate } from "../helpers/data-helpers";
+import { Unixtodate, createDate, datetoUnix } from "../helpers/data-helpers";
 import {
   LineChart,
   Line,
@@ -12,11 +12,47 @@ import {
 import Card from "./Card";
 import { config } from "../../config";
 import { ThemeContext } from "../../context/ThemeContext";
+import { StockContext } from "../../context/StockContext";
+import { stockChart } from "../../api/stock-api";
 
 const Charts = () => {
-  const [data, setdata] = useState(candle);
+  const [data, setdata] = useState([]);
   const [filter, setfilter] = useState("1D");
   const { theme } = useContext(ThemeContext);
+  const { stock } = useContext(StockContext);
+
+  const dateRange = () => {
+    const { days, weeks, months, years } = config[filter];
+    const endDate = new Date();
+    const startDate = createDate(endDate, -days, -weeks, -months, -years);
+    const startTimeStamp = datetoUnix(startDate);
+    const endTimeStamp = datetoUnix(endDate);
+    return { startTimeStamp, endTimeStamp };
+  };
+
+  const updateChart = async () => {
+    const { startTimeStamp, endTimeStamp } = dateRange();
+    const resolution = config[filter].resolution;
+    try {
+      if (stock) {
+        const result = await stockChart(
+          stock,
+          resolution,
+          startTimeStamp,
+          endTimeStamp
+        );
+        setdata(formatdata(result));
+        console.log(result);
+      }
+    } catch (error) {
+      setdata({});
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    updateChart();
+  }, [stock, filter]);
 
   const formatdata = (data) => {
     return data.c.map((element, index) => {
@@ -26,19 +62,19 @@ const Charts = () => {
       };
     });
   };
-  const CustomTooltip = ({ payload, label, active }) => {
-    if (active) {
-      return (
-        <div
-          className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}
-        >
-          <p className="text-sm">{` ${payload[0].value} | ${label} `}</p>
-        </div>
-      );
-    }
+  // const CustomTooltip = ({ payload, label, active }) => {
+  //   if (active) {
+  //     return (
+  //       <div
+  //         className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}
+  //       >
+  //         <p className="text-sm">{` ${payload[0].value} | ${label} `}</p>
+  //       </div>
+  //     );
+  //   }
 
-    return null;
-  };
+  //   return null;
+  // };
   return (
     <Card>
       <ul className="absolute top-5 right-5 flex flex-row items-center z-40">
@@ -53,7 +89,7 @@ const Charts = () => {
                 }`}
               >
                 {element}
-              </button>{" "}
+              </button>
             </li>
           );
         })}
@@ -62,7 +98,7 @@ const Charts = () => {
         <LineChart
           width={500}
           height={300}
-          data={formatdata(data)}
+          data={data}
           margin={{
             top: 5,
             right: 5,
@@ -78,7 +114,8 @@ const Charts = () => {
             domain={["dataMin", "dataMax"]}
             stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip />
+          {/* custom tooltip to be fixed */}
           <Line
             type="monotone"
             dataKey="value"

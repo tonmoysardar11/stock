@@ -39,7 +39,7 @@ export const stockProfile = async (input) => {
       `${baseURL}stock/candle?symbol=${symbol}&resolution=${resolution}&from=${from}&to=${to}&token=${process.env.REACT_APP_API_KEY}`
     );
     if (!fetchedData.ok) {
-      const message = `Oops!! Something Wrong => ${fetchedData.status}:${fetchedData.statusText}`;
+      const message = `Oops!! Something Wrong - ${fetchedData.status}:${fetchedData.statusText}`;
       throw new Error(message);
     }
     return await fetchedData.json();

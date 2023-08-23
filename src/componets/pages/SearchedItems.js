@@ -3,7 +3,7 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { stockSearch } from "../../api/stock-api";
 import { StockContext } from "../../context/StockContext";
 
-const SearchedItems = ({ find }) => {
+const SearchedItems = ({ find,clear }) => {
   const [data, setdata] = useState([]);
   const [loading, setloading] = useState(false);
   const { theme } = useContext(ThemeContext);
@@ -14,7 +14,9 @@ const SearchedItems = ({ find }) => {
    try {
     if(find){
       const result= await stockSearch(find)
-      setdata(result.result)
+      const exactResult= result.result.filter((element)=>!element.symbol.includes('.'))
+      console.log(exactResult)
+      setdata(exactResult)
     }
     
    } catch (error) {
@@ -48,10 +50,10 @@ const SearchedItems = ({ find }) => {
                   <div
                     key={index}
                     className="block px-4 py-2 text-sm cursor-pointer flex justify-between items-center hover:font-semibold"
-                    onClick={()=>setstock(element.displaySymbol)}
+                    onClick={()=>{setstock(element.symbol);console.log(element)}}
                   >
                     <p>{element.description}</p>
-                    <p>{element.displaySymbol}</p>
+                    <p>{element.symbol}</p>
                    
                   </div>
                 );

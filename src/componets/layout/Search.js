@@ -5,14 +5,13 @@ import SearchedItems from "../pages/SearchedItems";
 
 const Search = () => {
   const [input, setinput] = useState("");
-  const [match, setmatch] = useState("");
+  
   const change = (e) => {
     setinput(e.target.value);
-    setmatch("");
+    
   };
   const clear = () => {
     setinput("");
-    setmatch("");
   };
   return (
     <>
@@ -33,7 +32,7 @@ const Search = () => {
           )}
         </div>
       </div>
-      {input && <SearchedItems find={input} />}
+      {input && <SearchedItems find={input} clear={clear}/>}
     </>
   );
 };

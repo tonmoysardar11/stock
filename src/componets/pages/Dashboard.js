@@ -12,7 +12,6 @@ const Dashboard = () => {
   const { stock } = useContext(StockContext);
   const [profile, setprofile] = useState({});
   const [price, setprice] = useState({});
-
   const getProfile = async () => {
     try {
       if (stock) {
@@ -28,7 +27,6 @@ const Dashboard = () => {
     try {
       if (stock) {
         const result = await stockPrice(stock);
-        console.log(result)
         setprice(result);
       }
     } catch (error) {
@@ -54,7 +52,6 @@ const Dashboard = () => {
         <Charts />
       </div>
       <div className="grid col-span-6 row-span-1 md:col-span-2">
-        {console.log(profile.logo,profile.name,price.c,price.d,price.dp)}
         <Profile
           logo={profile.logo}
           name={profile.name}
