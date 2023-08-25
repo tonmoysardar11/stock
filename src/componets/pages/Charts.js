@@ -17,6 +17,7 @@ import { stockChart } from "../../api/stock-api";
 const Charts = () => {
   const [data, setdata] = useState([]);
   const [filter, setfilter] = useState("1D");
+  const [change, setchange] = useState(0);
   const { theme } = useContext(ThemeContext);
   const { stock } = useContext(StockContext);
 
@@ -41,6 +42,10 @@ const Charts = () => {
           endTimeStamp
         );
         setdata(formatdata(result));
+        setchange(
+          formatdata(result)[formatdata(result).length - 1].value -
+            formatdata(result)[0].value
+        );
       }
     } catch (error) {
       setdata({});
@@ -50,6 +55,7 @@ const Charts = () => {
 
   useEffect(() => {
     updateChart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stock, filter]);
 
   const formatdata = (data) => {
@@ -61,12 +67,14 @@ const Charts = () => {
     });
   };
   const CustomTooltip = ({ payload, label, active }) => {
-    if (active) {
+    if (active && payload) {
       return (
         <div
           className={`p-2 rounded-lg bg-gray-100 text-black shadow-lg shadow-gray-950`}
         >
-          <p className="text-sm">{` $${payload[0].value}`} <b>|</b> {`${label} `}</p>
+          <p className="text-sm">
+            {` $${payload[0].value}`} <b>|</b> {`${label} `}
+          </p>
         </div>
       );
     }
@@ -74,8 +82,8 @@ const Charts = () => {
     return null;
   };
   return (
-    <Card>
-      <ul className="absolute top-5 right-5 flex flex-row items-center z-40">
+    <div className="relative w-full h-full">
+      <ul className="absolute top-5 right-2 md:right-5 flex flex-row items-center z-40">
         {Object.keys(config).map((element, index) => {
           return (
             <li key={index} onClick={() => setfilter(element)}>
@@ -105,25 +113,28 @@ const Charts = () => {
           }}
         >
           <XAxis
-            dataKey={"time"} 
+            dataKey={"time"}
             stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
+            tick={""}
           />
           <YAxis
-            domain={['dataMin-1', 'dataMax+1']}
+            domain={["dataMin-1", "dataMax+1"]}
             stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
+            tick={""}
+            className="invisible"
           />
-          <Tooltip content={<CustomTooltip/>}/>
-          
+          <Tooltip content={<CustomTooltip />} />
+
           <Line
             type="monotone"
             dataKey="value"
-            stroke="rgb(22 163 74)"
+            stroke={change >= 0 ? "rgb(22 163 74)" : "rgb(255 0 0)"}
             strokeWidth={2}
             dot={false}
           />
         </LineChart>
       </ResponsiveContainer>
-    </Card>
+    </div>
   );
 };
 

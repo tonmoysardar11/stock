@@ -5,6 +5,7 @@ import Dashboard from "./componets/pages/Dashboard";
 import { useState } from "react";
 import { ThemeContext } from "./context/ThemeContext";
 import { StockContext } from "./context/StockContext";
+import Footer from "./componets/layout/Footer";
 
 function App() {
   const [theme, settheme] = useState(false);
@@ -15,6 +16,7 @@ function App() {
         <ThemeContext.Provider value={{ theme, settheme }}>
           <Navbar />
           <Dashboard />
+          <Footer/>
         </ThemeContext.Provider>
       </StockContext.Provider>
     </BrowserRouter>

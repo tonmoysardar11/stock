@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="z-50 text-gray-400 bg-black shadow-2xl w-screen body-font fixed px-5 md:px-0">
+    <header className="z-50 text-gray-400 bg-black shadow-2xl w-screen body-font md:fixed px-5 md:px-0">
       <div className="w-full mx-auto flex flex-wrap px-1 md:px-10 lg:px-20 justify-between items-center">
         <Link
           className="flex title-font font-medium items-center text-white md:mb-0"
@@ -32,50 +32,6 @@ const Navbar = () => {
         </Link>
 
         <Search />
-
-        {menu ? (
-          <FontAwesomeIcon
-            icon={faBars}
-            onClick={toggle}
-            className=" mx-2 lg:hidden block rotate-90 text-xl duration-200"
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={faBars}
-            onClick={toggle}
-            className=" mx-2 lg:hidden block text-xl duration-200"
-          />
-        )}
-
-        <div
-          className={` ${
-            menu ? `flex` : `hidden`
-          } flex-col lg:flex-row justify-end items-center lg:flex py-4 lg:py-0 w-full lg:w-1/3`}
-        >
-          <nav className=" flex flex-wrap items-center text-base justify-center">
-            <div>
-              <Link
-                className={
-                  location === "league" ? "text-white" : "hover:text-red-500"
-                }
-                to="/league"
-                onClick={() => {
-                  path("league");
-                  setmenu(false);
-                }}
-              >
-                Leagues
-              </Link>
-              <div
-                className={
-                  location === "league"
-                    ? "h-1 w-100 mx-5 mt-1 bg-red-500 rounded"
-                    : ""
-                }
-              ></div>
-            </div>
-          </nav>
-        </div>
         <FontAwesomeIcon
           icon={!theme ? faMoon : faSun}
           onClick={() => {

@@ -15,7 +15,7 @@ const Search = () => {
   };
   return (
     <>
-      <div className="w-2/3 md:w-1/3 flex justify-center items-center">
+      <div className="w-2/3 md:w-1/3 flex justify-center items-center py-2 md:py-0">
         <div className="w-full md:w-4/5 flex justify-center items-center border-t-0 border-r-0 border-l-0 border-b-2 border-gray-600">
           <input
             type="text"

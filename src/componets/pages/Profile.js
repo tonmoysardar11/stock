@@ -3,8 +3,8 @@ import Card from "./Card";
 
 const Profile = ({ logo, name, value, change, changepercentage }) => {
   return (
-    <Card>
-      <div className="w-full flex justify-between items-center">
+    <>
+      <div className="max-w-full flex justify-between items-center mx-5 md:m-5">
         <div className="w-full flex justify-start items-center">
           <img src={logo} width={40} height={40} alt={name} />
           <p className="mx-2">{name}</p>
@@ -16,7 +16,7 @@ const Profile = ({ logo, name, value, change, changepercentage }) => {
               change > 0 ? "text-emerald-600" : "text-red-500"
             }`}
           >
-           {change?.toFixed(2)}
+           {change?.toFixed(2)>0?`+${change?.toFixed(2)}`:change?.toFixed(2)}
           </p>
           <p
             className={`text-md md:text-xl ${
@@ -27,7 +27,7 @@ const Profile = ({ logo, name, value, change, changepercentage }) => {
           </p>
         </div>
       </div>
-    </Card>
+    </>
   );
 };
 
