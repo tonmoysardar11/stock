@@ -14,10 +14,10 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { StockContext } from "../../context/StockContext";
 import { stockChart } from "../../api/stock-api";
 
-const Charts = () => {
+const Charts = ({change}) => {
   const [data, setdata] = useState([]);
   const [filter, setfilter] = useState("1D");
-  const [change, setchange] = useState(0);
+  // const [change, setchange] = useState(0);
   const { theme } = useContext(ThemeContext);
   const { stock } = useContext(StockContext);
 
@@ -42,10 +42,10 @@ const Charts = () => {
           endTimeStamp
         );
         setdata(formatdata(result));
-        setchange(
-          formatdata(result)[formatdata(result).length - 1].value -
-            formatdata(result)[0].value
-        );
+        // setchange(
+        //   formatdata(result)[formatdata(result).length - 1].value -
+        //     formatdata(result)[0].value
+        // );
       }
     } catch (error) {
       setdata({});
