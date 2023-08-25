@@ -79,7 +79,7 @@ const Dashboard = () => {
   }, [stock]);
   return (
     <div
-      className={`${!theme ? "bg-white text-black" : "bg-black text-gray-100"}`}
+      className={`overflow-x-hidden ${!theme ? "bg-white text-black" : "bg-black text-gray-100"}`}
     >
       <div
         className={`h-auto md:h-screen md:pt-16 lg:pt-24 ${
