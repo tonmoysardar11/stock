@@ -122,6 +122,7 @@ const Charts = () => {
             stroke={!theme ? "rgb(0 0 0)" : "rgb(255 255 255)"}
             tick={""}
             className="invisible"
+            width={1}
           />
           <Tooltip content={<CustomTooltip />} />
 

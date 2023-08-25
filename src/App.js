@@ -9,7 +9,7 @@ import Footer from "./componets/layout/Footer";
 
 function App() {
   const [theme, settheme] = useState(false);
-  const [stock, setstock] = useState("AAPL");
+  const [stock, setstock] = useState("GOOGL");
   return (
     <BrowserRouter>
       <StockContext.Provider value={{ stock, setstock }}>

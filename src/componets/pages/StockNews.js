@@ -6,7 +6,7 @@ import { Unixtodate } from "../helpers/data-helpers";
 const StockNews = ({ data }) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className="pb-8 pt-16 md:px-10 lg:px-20">
+    <div className="py-8 md:pb-8 md:pt-16 md:px-10 lg:px-20">
       <section className={`${
               !theme ? "text-gray-600" : "text-white"
             } body-font overflow-hidden`}>

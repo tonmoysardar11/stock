@@ -4,7 +4,7 @@ import Card from "./Card";
 const Profile = ({ logo, name, value, change, changepercentage }) => {
   return (
     <>
-      <div className="max-w-full flex justify-between items-center mx-5 md:m-5">
+      <div className="max-w-full flex justify-between lg:justify-start items-center px-5 md:px-10 lg:px-20 py-5 md:py-5">
         <div className="w-full flex justify-start items-center">
           <img src={logo} width={40} height={40} alt={name} />
           <p className="mx-2">{name}</p>

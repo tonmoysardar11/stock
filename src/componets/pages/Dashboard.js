@@ -95,7 +95,7 @@ const Dashboard = () => {
             />
         <div className="w-screen flex flex-col md:flex-row md:h-[75vh] md:px-10 lg:px-20 py-5">
           <div
-            className={`w-full min-h-[50vh] md:h-auto md:w-4/6 ${
+            className={`w-full h-[40vh] md:h-auto md:w-4/6 ${
               !theme ? "bg-white" : "bg-black"
             }`}
           >
