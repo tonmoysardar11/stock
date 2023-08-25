@@ -83,7 +83,7 @@ const Charts = () => {
   };
   return (
     <div className="relative w-full h-full">
-      <ul className="absolute top-5 right-2 md:right-5 flex flex-row items-center z-40">
+      <ul className="absolute top-0 md:top-5 right-2 md:right-5 flex flex-row items-center z-40">
         {Object.keys(config).map((element, index) => {
           return (
             <li key={index} onClick={() => setfilter(element)}>
