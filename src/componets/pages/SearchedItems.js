@@ -35,7 +35,7 @@ const SearchedItems = ({ find,clear }) => {
   return (
     <>
       <div
-        className={`absolute top-24 md:top-14 left-5 md:left-[45vw] max-h-[50vh] overflow-y-auto z-30 mt-2 w-[80vw] md:w-[26vw] origin-top-right rounded-md ${
+        className={`absolute top-24 md:top-14 left-5 md:left-[45vw] max-h-[50vh] overflow-y-auto z-40 mt-2 w-[80vw] md:w-[26vw] origin-top-right rounded-md ${
           !theme ? "bg-white text-black" : "bg-black text-white shadow-md shadow-gray-500"
         } shadow-2xl ring-1 ring-black ring-opacity-5`}
         role="menu"
