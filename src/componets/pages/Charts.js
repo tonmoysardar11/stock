@@ -8,7 +8,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import Card from "./Card";
 import { config } from "../../config";
 import { ThemeContext } from "../../context/ThemeContext";
 import { StockContext } from "../../context/StockContext";
@@ -54,7 +53,10 @@ const Charts = ({change}) => {
   };
 
   useEffect(() => {
-    updateChart();
+    setInterval(() => {
+      
+      updateChart();
+    }, 2000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stock, filter]);
 
